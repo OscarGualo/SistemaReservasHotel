@@ -40,9 +40,9 @@ public class DatosQuemados {
     public static void inicializar() {
         
         // --- Cargar Usuarios ---
-        USUARIOS.put("cliente@hotel.com", new Usuario("cliente1", "123", "cliente"));
-        USUARIOS.put("cliente2@hotel.com", new Usuario("cliente2", "456", "cliente"));
-        USUARIOS.put("recepcion@hotel.com", new Usuario("recep1", "admin", "recepcionista"));
+        USUARIOS.put("cliente@hotel.com", new Usuario("cliente1", "123", "cliente","oscar","gualotuña","12312312","quito"));
+        USUARIOS.put("cliente2@hotel.com", new Usuario("cliente2", "456", "cliente","luis","hernandez","123123132","pichincha"));
+        USUARIOS.put("recepcion@hotel.com", new Usuario("recep1", "admin", "recepcionista","gabriela","loya","12435523","conocoto"));
         
         // --- Cargar Habitaciones ---
         HABITACIONES.put(101, new Habitacion(101, "Simple", 50, "disponible", 1));

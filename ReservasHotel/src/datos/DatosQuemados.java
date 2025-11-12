@@ -50,7 +50,7 @@ public class DatosQuemados {
         HABITACIONES.put(201, new Habitacion(201, "Doble", 80, "ocupada", 2));
         HABITACIONES.put(202, new Habitacion(202, "Doble", 80, "ocupada", 2));
         HABITACIONES.put(301, new Habitacion(301, "Suite", 150, "mantenimiento", 4));
-        
+        HABITACIONES.put(203, new Habitacion(203, "Suite", 150, "disponible", 4));
         // --- Cargar Servicios de ejemplo ---
         SERVICIOS.add(new Servicio(1, "WiFi Premium", 10.0));
         SERVICIOS.add(new Servicio(2, "Acceso al Spa", 25.0));
@@ -64,16 +64,16 @@ public class DatosQuemados {
         
         // Reserva 1 (confirmada)
         // Simulamos que esta reserva no tuvo servicios ni promos
-        double precioReserva1 = HABITACIONES.get(201).getPrecio(); // 80.0
+        double precioReserva1 = HABITACIONES.get(101).getPrecio(); // 80.0
         RESERVAS.add(new Reserva(
-            1, "cliente1", 201, "2025-11-08", "2025-11-10", "confirmada",
+            5, "cliente1", 101, "2025-11-08", "2025-11-10", "confirmada",
             new ArrayList<>(), null, precioReserva1));
 
         // Reserva 2 (pendiente)
         // Simulamos que esta reserva tampoco tuvo servicios ni promos
-        double precioReserva2 = HABITACIONES.get(202).getPrecio(); // 80.0
+        double precioReserva2 = HABITACIONES.get(203).getPrecio(); // 80.0
         RESERVAS.add(new Reserva(
-            2, "cliente2", 202, "2025-11-11", "2025-11-12", "pendiente",
+            1, "cliente2", 203, "2025-11-11", "2025-11-12", "disponible",
             new ArrayList<>(), null, precioReserva2));
     }
 }

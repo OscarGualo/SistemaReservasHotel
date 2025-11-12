@@ -55,7 +55,7 @@ public class DatosQuemados {
         // --- Cargar Servicios de ejemplo ---
         SERVICIOS.add(new Servicio(1, "WiFi Premium", 10.0));
         SERVICIOS.add(new Servicio(2, "Acceso al Spa", 25.0));
-
+        SERVICIOS.add(new Servicio(10, "Masaje Terapeutico", 25.0));
         // --- Cargar Promociones de ejemplo ---
         PROMOCIONES.add(new Promocion(1, "Oferta de Verano", 15.0)); // 15% de descuento
         

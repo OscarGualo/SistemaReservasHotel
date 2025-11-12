@@ -51,6 +51,7 @@ public class DatosQuemados {
         HABITACIONES.put(202, new Habitacion(202, "Doble", 80, "ocupada", 2));
         HABITACIONES.put(301, new Habitacion(301, "Suite", 150, "mantenimiento", 4));
         HABITACIONES.put(203, new Habitacion(203, "Suite", 150, "disponible", 4));
+        HABITACIONES.put(305, new Habitacion(305, "Doble", 70, "disponible", 4));
         // --- Cargar Servicios de ejemplo ---
         SERVICIOS.add(new Servicio(1, "WiFi Premium", 10.0));
         SERVICIOS.add(new Servicio(2, "Acceso al Spa", 25.0));

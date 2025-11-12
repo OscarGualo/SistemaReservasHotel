@@ -10,6 +10,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import modelo.Habitacion;
 import modelo.Promocion;
 import modelo.Reserva;
@@ -49,12 +52,21 @@ public class HotelServicio {
     public static String registrarUsuario(String email, String password, String idUsuario) {
         if (DatosQuemados.USUARIOS.containsKey(email)) {
             return "Error: El email ya está registrado.";
+        }if(contieneArroba(email)){
+            Usuario nuevoUsuario = new Usuario(idUsuario, password, "cliente");
+            DatosQuemados.USUARIOS.put(email, nuevoUsuario);
+            return "¡Usuario registrado exitosamente!";
+        }else{
+            return "Error: El email ingresado no es el correcto";
         }
-        Usuario nuevoUsuario = new Usuario(idUsuario, password, "cliente");
-        DatosQuemados.USUARIOS.put(email, nuevoUsuario);
-        return "¡Usuario registrado exitosamente!";
-    }
 
+    }
+    public static boolean contieneArroba(String emailNuevo){
+       String regex = "^^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        Pattern pat = Pattern.compile(regex);
+        Matcher matcher = pat.matcher(emailNuevo);
+        return matcher.matches();
+    }
     // --- LÓGICA DE CLIENTE / CONSULTA ---
 
     /**

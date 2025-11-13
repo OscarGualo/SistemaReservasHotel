@@ -1,0 +1,1 @@
+El .jar se encuentra en la carpeta :out\artifacts\ReservasHotel_jar3

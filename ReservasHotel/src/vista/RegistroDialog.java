@@ -20,12 +20,15 @@ public class RegistroDialog extends JDialog {
     private JPasswordField passField;
     private JPasswordField confirmPassField;
     private JLabel statusLabel;
-
+    private JTextField nombreField;
+    private JTextField apellidoField;
+    private JTextField cedulaField;
+    private JTextField direccionField;
     public RegistroDialog(Frame parent) {
         // 1. Configuración del Diálogo
         super(parent, "Registro de Nuevo Cliente", true); // 'true' lo hace modal
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        setSize(600, 350);
+        setSize(1000, 800);
         setLocationRelativeTo(parent); // Se centra sobre la ventana principal
         setResizable(false);
 
@@ -36,7 +39,7 @@ public class RegistroDialog extends JDialog {
         setContentPane(panel); // Se usa como el panel principal del diálogo
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // --- Fila 0: Título ---
@@ -49,10 +52,56 @@ public class RegistroDialog extends JDialog {
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(lblTitulo, gbc);
 
-        // --- Fila 1: Email ---
+        // --- Fila 1: Nombre ---
         gbc.gridwidth = 1;
         gbc.anchor = GridBagConstraints.EAST;
         gbc.gridy = 1;
+        gbc.gridx = 0;
+        panel.add(new JLabel("Nombre:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        nombreField = new JTextField(20);
+        panel.add(nombreField, gbc);
+
+        // --- Fila 2: Apellido ---
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridy = 2;
+        gbc.gridx = 0;
+        panel.add(new JLabel("Apellido:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        apellidoField = new JTextField(20);
+        panel.add(apellidoField, gbc);
+
+        // --- Fila 3: cedula ---
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridy = 3;
+        gbc.gridx = 0;
+        panel.add(new JLabel("Cedula:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        cedulaField = new JTextField(20);
+        panel.add(cedulaField, gbc);
+        // --- Fila 4: Direccion ---
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridy = 4;
+        gbc.gridx = 0;
+        panel.add(new JLabel("Direccion:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        direccionField = new JTextField(20);
+        panel.add(direccionField, gbc);
+        // --- Fila 5: Email ---
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridy = 5;
         gbc.gridx = 0;
         panel.add(new JLabel("Email:"), gbc);
         
@@ -61,8 +110,8 @@ public class RegistroDialog extends JDialog {
         emailField = new JTextField(20);
         panel.add(emailField, gbc);
 
-        // --- Fila 2: Contraseña ---
-        gbc.gridy = 2;
+        // --- Fila 6: Contraseña ---
+        gbc.gridy = 6;
         gbc.gridx = 0;
         gbc.anchor = GridBagConstraints.EAST;
         panel.add(new JLabel("Contraseña:"), gbc);
@@ -72,8 +121,8 @@ public class RegistroDialog extends JDialog {
         passField = new JPasswordField(20);
         panel.add(passField, gbc);
 
-        // --- Fila 3: Confirmar Contraseña ---
-        gbc.gridy = 3;
+        // --- Fila 7: Confirmar Contraseña ---
+        gbc.gridy = 7;
         gbc.gridx = 0;
         gbc.anchor = GridBagConstraints.EAST;
         panel.add(new JLabel("Confirmar Contraseña:"), gbc);
@@ -83,8 +132,8 @@ public class RegistroDialog extends JDialog {
         confirmPassField = new JPasswordField(20);
         panel.add(confirmPassField, gbc);
 
-        // --- Fila 4: Botón de Registro ---
-        gbc.gridy = 4;
+        // --- Fila 8: Botón de Registro ---
+        gbc.gridy = 8;
         gbc.gridx = 0;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -92,8 +141,8 @@ public class RegistroDialog extends JDialog {
         registerButton.setPreferredSize(new Dimension(180, 40));
         panel.add(registerButton, gbc);
 
-        // --- Fila 5: Etiqueta de Estado ---
-        gbc.gridy = 5;
+        // --- Fila 9: Etiqueta de Estado ---
+        gbc.gridy = 9;
         statusLabel = new JLabel(" ", SwingConstants.CENTER);
         statusLabel.setForeground(Color.RED);
         panel.add(statusLabel, gbc);
@@ -124,7 +173,7 @@ public class RegistroDialog extends JDialog {
 
         // Check 3: Llamar al servicio
         // Usamos el email como idUsuario por simplicidad
-        String resultado = HotelServicio.registrarUsuario(email, pass, email); 
+        String resultado = HotelServicio.registrarUsuario(email, pass,email,nombreField.getText(), apellidoField.getText(), cedulaField.getText(), direccionField.getText());
 
         if (resultado.contains("exitosamente")) {
             // Si el registro es exitoso, mostrar pop-up y cerrar.

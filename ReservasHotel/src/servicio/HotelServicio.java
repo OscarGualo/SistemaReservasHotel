@@ -49,11 +49,11 @@ public class HotelServicio {
      * @param idUsuario Un ID único para el usuario (simplificado como email).
      * @return Un String con el mensaje de éxito o error.
      */
-    public static String registrarUsuario(String email, String password, String idUsuario) {
+    public static String registrarUsuario(String email, String password, String idUsuario,String nombre,String apellido,String cedula,String direccion) {
         if (DatosQuemados.USUARIOS.containsKey(email)) {
             return "Error: El email ya está registrado.";
         }if(contieneArroba(email)){
-            Usuario nuevoUsuario = new Usuario(idUsuario, password, "cliente");
+            Usuario nuevoUsuario = new Usuario(idUsuario, password, "cliente",nombre, apellido, cedula, direccion);
             DatosQuemados.USUARIOS.put(email, nuevoUsuario);
             return "¡Usuario registrado exitosamente!";
         }else{
@@ -61,6 +61,12 @@ public class HotelServicio {
         }
 
     }
+
+    /**
+     * Verifica si el email contiene una arroba y tiene formato válido.
+     * @param emailNuevo
+     * @return
+     */
     public static boolean contieneArroba(String emailNuevo){
        String regex = "^^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
         Pattern pat = Pattern.compile(regex);

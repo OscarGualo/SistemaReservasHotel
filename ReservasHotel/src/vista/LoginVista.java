@@ -28,8 +28,7 @@ public class LoginVista extends GradientPanel { // <-- EXTENDS MODIFICADO
     private JLabel statusLabel;
 
     public LoginVista(MainFrame mainFrame) {
-        
-        // --- ¡CORRECCIÓN! ---
+
         // 1. Llama al constructor del GradientPanel PRIMERO.
         // Un degradado suave de azul muy claro (casi blanco) a blanco.
         super(new Color(230, 245, 255), Color.WHITE); 
@@ -86,7 +85,6 @@ public class LoginVista extends GradientPanel { // <-- EXTENDS MODIFICADO
         gbc.fill = GridBagConstraints.NONE;
         
         try {
-            // Asume que tienes una carpeta 'icons' en la raíz (ej. ReservasHotel/icons/key.png)
             add(new JLabel(new ImageIcon("icons/key.png")), gbc);
         } catch (Exception e) {
             System.err.println("No se encontró el ícono key.png");

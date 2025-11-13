@@ -77,4 +77,8 @@ public class DatosQuemados {
             1, "cliente2", 203, "2025-11-11", "2025-11-12", "disponible",
             new ArrayList<>(), null, precioReserva2));
     }
+
+    public static Map<Integer, Habitacion> getHABITACIONES() {
+        return HABITACIONES;
+    }
 }

@@ -95,7 +95,30 @@ public class HotelServicio {
         }
         return sb.toString();
     }
+    /**
+     * Validacion fechas
+     *
+     */
 
+    public boolean validarFechas(String fechaIn, String fechaOut) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            LocalDate dateIn = LocalDate.parse(fechaIn, formatter);
+            LocalDate dateOut = LocalDate.parse(fechaOut, formatter);
+            return dateOut.isAfter(dateIn);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+    /**
+     * Calcula noches de una reserva
+     */
+    public int calcularNoches(String fechaIn, String fechaOut) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate dateIn = LocalDate.parse(fechaIn, formatter);
+        LocalDate dateOut = LocalDate.parse(fechaOut, formatter);
+        return (int) ChronoUnit.DAYS.between(dateIn, dateOut);
+    }
     /**
      * Simula el procesamiento de un pago (<<Include>> de Realizar Reserva).
      * @param monto El monto a procesar.
@@ -106,6 +129,24 @@ public class HotelServicio {
         System.out.println("Procesando pago por $" + monto + "...");
         return true; 
     }
+    /**
+     * Calcula el subtotal de una reserva (<<Include>> de Realizar Reserva).
+     */
+    public double calcularSubtotal(double precioHabitacion, int numeroDeNoches, double precioServicios) {
+        return (precioHabitacion * numeroDeNoches) + precioServicios;
+    }
+    /**
+     * Guardar nueva reserva
+     */
+    public Reserva guardarReserva(int idReserva, String idCliente, int idHabitacion, String fechaEntrada,
+                                  String fechaSalida, String estado, List<Servicio> serviciosContratados,
+                                  Promocion promocionAplicada, double precioFinalCalculado) {
+        Reserva nuevaReserva = new Reserva(idReserva, idCliente, idHabitacion, fechaEntrada,
+                fechaSalida, estado, serviciosContratados, promocionAplicada, precioFinalCalculado);
+        DatosQuemados.RESERVAS.add(nuevaReserva);
+        return nuevaReserva;
+    }
+
 
     /**
      * MODIFICADO: Procesa la reserva, calcula el precio final, genera factura y procesa el pago.
@@ -130,7 +171,7 @@ public class HotelServicio {
         try {
             LocalDate dateIn = LocalDate.parse(fechaIn, formatter);
             LocalDate dateOut = LocalDate.parse(fechaOut, formatter);
-            
+
             // Validación de fechas
             if (!dateOut.isAfter(dateIn)) {
                 return "Error: La fecha de salida debe ser posterior a la fecha de entrada.";
